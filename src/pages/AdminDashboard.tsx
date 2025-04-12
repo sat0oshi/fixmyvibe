@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -27,14 +26,43 @@ const AdminDashboard = () => {
   const fetchData = async () => {
     setIsLoading(true);
     try {
-      // Récupérer les utilisateurs
-      const { data: usersData, error: usersError } = await supabase
+      // Récupérer les utilisateurs avec leurs emails
+      const { data: profilesData, error: profilesError } = await supabase
         .from("profiles")
         .select("*")
         .order("created_at", { ascending: false });
 
-      if (usersError) throw usersError;
-      setUsers(usersData || []);
+      if (profilesError) throw profilesError;
+      
+      // Fetch user emails from auth.users (via RLS policy)
+      const { data: usersData, error: usersError } = await supabase.auth.admin.listUsers();
+      
+      if (usersError) {
+        console.error("Error fetching user emails:", usersError);
+        
+        // If we can't get emails, create users with dummy emails as a fallback
+        const transformedUsers = profilesData?.map(profile => ({
+          ...profile,
+          email: `${profile.username}@example.com`, // Fallback email
+          role: profile.role as User['role'] // Type cast to ensure role matches expected type
+        })) || [];
+        
+        setUsers(transformedUsers);
+      } else {
+        // Map profiles with real emails
+        const emailMap = new Map();
+        usersData?.users?.forEach(user => {
+          emailMap.set(user.id, user.email);
+        });
+        
+        const transformedUsers = profilesData?.map(profile => ({
+          ...profile,
+          email: emailMap.get(profile.id) || `${profile.username}@example.com`,
+          role: profile.role as User['role']
+        })) || [];
+        
+        setUsers(transformedUsers);
+      }
 
       // Récupérer les projets
       const { data: projectsData, error: projectsError } = await supabase
