@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
-import { UserCircle, Menu, X } from "lucide-react";
+import { UserCircle, Menu, X, FilePlus } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 
 const Navbar = () => {
@@ -73,6 +73,17 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-4">
           {user ? (
             <div className="flex items-center gap-4">
+              {profile?.role === "no-code" && (
+                <Link to="/submit-project">
+                  <Button
+                    variant={scrolled ? "outline" : "outline"}
+                    className={!scrolled ? "text-white border-white hover:bg-white/10" : "border-fixmyvibe-600 text-fixmyvibe-600 hover:bg-fixmyvibe-50"}
+                  >
+                    <FilePlus className="mr-2 h-4 w-4" />
+                    Soumettre un projet
+                  </Button>
+                </Link>
+              )}
               <span className={`transition-colors ${scrolled ? 'text-gray-700' : 'text-white'}`}>
                 {profile?.username || user.email}
               </span>
@@ -147,6 +158,16 @@ const Navbar = () => {
             >
               À propos
             </Link>
+            {user && profile?.role === "no-code" && (
+              <Link
+                to="/submit-project"
+                className="flex items-center gap-2 text-gray-700 hover:text-fixmyvibe-600 transition-colors py-2 border-b"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <FilePlus className="h-5 w-5" />
+                Soumettre un projet
+              </Link>
+            )}
             {user ? (
               <>
                 <Link

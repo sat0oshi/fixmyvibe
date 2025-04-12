@@ -1,6 +1,7 @@
 
 import { Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
+import { useToast } from "@/hooks/use-toast";
 
 type ProtectedRouteProps = {
   children: React.ReactNode;
@@ -10,6 +11,7 @@ type ProtectedRouteProps = {
 const ProtectedRoute = ({ children, requiredRole }: ProtectedRouteProps) => {
   const { user, profile, isLoading } = useAuth();
   const location = useLocation();
+  const { toast } = useToast();
 
   if (isLoading) {
     return (
@@ -20,10 +22,20 @@ const ProtectedRoute = ({ children, requiredRole }: ProtectedRouteProps) => {
   }
 
   if (!user) {
+    toast({
+      title: "Accès refusé",
+      description: "Vous devez être connecté pour accéder à cette page.",
+      variant: "destructive",
+    });
     return <Navigate to="/auth" state={{ from: location }} replace />;
   }
 
   if (requiredRole && profile?.role !== requiredRole) {
+    toast({
+      title: "Accès refusé",
+      description: `Cette page est réservée aux utilisateurs avec le rôle "${requiredRole}".`,
+      variant: "destructive",
+    });
     return <Navigate to="/" replace />;
   }
 

@@ -10,6 +10,8 @@ import Projects from "./pages/Projects";
 import ProjectDetail from "./pages/ProjectDetail";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
+import SubmitProject from "./pages/SubmitProject";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +27,14 @@ const App = () => (
             <Route path="/projects" element={<Projects />} />
             <Route path="/projects/:id" element={<ProjectDetail />} />
             <Route path="/auth" element={<Auth />} />
+            <Route 
+              path="/submit-project" 
+              element={
+                <ProtectedRoute requiredRole="no-code">
+                  <SubmitProject />
+                </ProtectedRoute>
+              } 
+            />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
