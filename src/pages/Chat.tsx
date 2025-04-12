@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
@@ -40,17 +39,27 @@ const Chat = () => {
           .single();
 
         if (connectionError) throw connectionError;
-        setConnection(connectionData);
+        
+        // Cast the status to ensure it matches our Connection type
+        setConnection({
+          ...connectionData,
+          status: connectionData.status as Connection['status']
+        });
 
         // Get project details
         const { data: projectData, error: projectError } = await supabase
           .from("projects")
-          .select("*, profiles:user_id(*)")
+          .select("*")
           .eq("id", connectionData.project_id)
           .single();
 
         if (projectError) throw projectError;
-        setProject(projectData);
+        
+        // Cast the status to ensure it matches our Project type
+        setProject({
+          ...projectData,
+          status: projectData.status as Project['status']
+        });
 
         // Determine the other user
         const isProjectOwner = user.id === projectData.user_id;

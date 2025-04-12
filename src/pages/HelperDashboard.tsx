@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
@@ -39,7 +38,11 @@ const HelperDashboard = () => {
           .order("created_at", { ascending: false });
 
         if (pendingError) throw pendingError;
-        setPendingProjects(pendingData || []);
+        // Cast the status to ensure it matches our Project type
+        setPendingProjects((pendingData || []).map(project => ({
+          ...project,
+          status: project.status as Project['status']
+        })));
 
         // Fetch projects accepted by the current helper
         if (user) {
@@ -51,7 +54,11 @@ const HelperDashboard = () => {
             .order("updated_at", { ascending: false });
 
           if (acceptedError) throw acceptedError;
-          setAcceptedProjects(acceptedData || []);
+          // Cast the status to ensure it matches our Project type
+          setAcceptedProjects((acceptedData || []).map(project => ({
+            ...project,
+            status: project.status as Project['status']
+          })));
         }
       } catch (error) {
         console.error("Error fetching projects:", error);
@@ -116,7 +123,11 @@ const HelperDashboard = () => {
         .single();
         
       if (updatedProject) {
-        setAcceptedProjects([updatedProject, ...acceptedProjects]);
+        // Cast the status to ensure it matches our Project type
+        setAcceptedProjects([{
+          ...updatedProject,
+          status: updatedProject.status as Project['status']
+        }, ...acceptedProjects]);
       }
     } catch (error) {
       console.error("Error accepting project:", error);

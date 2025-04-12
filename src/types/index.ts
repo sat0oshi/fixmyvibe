@@ -18,11 +18,12 @@ export interface Project {
   user_id: string;
   title: string;
   description: string;
-  private_link: string;
+  private_link: string | null;
   status: 'pending' | 'assigned' | 'completed';
+  helper_id?: string | null;
   created_at: string;
   updated_at: string;
-  tags?: string[];
+  tags?: string[] | null;
 }
 
 export interface Connection {
@@ -40,4 +41,5 @@ export interface Message {
   user_id: string;
   content: string;
   created_at: string;
+  read?: boolean;
 }

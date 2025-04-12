@@ -1,4 +1,3 @@
-
 import { useParams, Link, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -39,7 +38,12 @@ const ProjectDetail = () => {
           .single();
 
         if (error) throw error;
-        setProject(data);
+        
+        // Cast the status to ensure it matches our Project type
+        setProject({
+          ...data,
+          status: data.status as Project['status']
+        });
 
         // Fetch project owner details
         const { data: ownerData, error: ownerError } = await supabase
@@ -125,9 +129,11 @@ const ProjectDetail = () => {
       if (connectionError) throw connectionError;
 
       setConnection(connectionData);
+      
+      // Update local project state
       setProject({
         ...project,
-        status: "assigned",
+        status: "assigned" as Project['status'],
         helper_id: user.id
       });
 
