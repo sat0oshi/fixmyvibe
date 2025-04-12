@@ -20,7 +20,7 @@ const Index = () => {
       <section className="pt-32 pb-20 relative">
         <div className="container mx-auto px-4">
           <div className="flex flex-col items-center text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-gradient">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 bg-gradient-to-br from-fixmyvibe-500 to-fixmyvibe-accent-500 bg-clip-text text-transparent">
               Connectez développeurs et créateurs no-code pour des solutions gratuites
             </h1>
             <p className="text-xl mb-12 text-gray-300 max-w-3xl">
@@ -225,15 +225,6 @@ const Index = () => {
 
       {/* Footer with dark theme */}
       <Footer />
-      
-      {/* Add custom CSS for text gradient */}
-      <style jsx>{`
-        .text-gradient {
-          background: linear-gradient(to right, #0ca5e9, #10b981);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-        }
-      `}</style>
     </div>
   );
 };
