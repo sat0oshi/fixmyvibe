@@ -12,8 +12,10 @@ import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 import SubmitProject from "./pages/SubmitProject";
 import HelperDashboard from "./pages/HelperDashboard";
+import AdminDashboard from "./pages/AdminDashboard";
 import Chat from "./pages/Chat";
 import ProtectedRoute from "./components/ProtectedRoute";
+import AdminRoute from "./components/AdminRoute";
 
 const queryClient = new QueryClient();
 
@@ -43,6 +45,14 @@ const App = () => (
                 <ProtectedRoute requiredRole="developer">
                   <HelperDashboard />
                 </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/admin-dashboard" 
+              element={
+                <AdminRoute>
+                  <AdminDashboard />
+                </AdminRoute>
               } 
             />
             <Route 

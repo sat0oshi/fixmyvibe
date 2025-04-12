@@ -2,13 +2,16 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
-import { UserCircle, Menu, X, FilePlus, HelpingHand } from "lucide-react";
+import { UserCircle, Menu, X, FilePlus, HelpingHand, ShieldAlert } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { user, profile, signOut } = useAuth();
+
+  // Vérifier si l'utilisateur est admin ou a l'email spécifique
+  const isAdmin = profile?.role === 'admin' || user?.email === 'kncsprod@gmail.com';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,6 +64,16 @@ const Navbar = () => {
               Tableau de bord Dev
             </Link>
           )}
+          {isAdmin && (
+            <Link 
+              to="/admin-dashboard" 
+              className={`transition-colors ${
+                scrolled ? 'text-gray-700 hover:text-fixmyvibe-600' : 'text-white/90 hover:text-white'
+              }`}
+            >
+              Administration
+            </Link>
+          )}
           <Link 
             to="/about" 
             className={`transition-colors ${
@@ -94,6 +107,17 @@ const Navbar = () => {
                   >
                     <HelpingHand className="mr-2 h-4 w-4" />
                     Aider des projets
+                  </Button>
+                </Link>
+              )}
+              {isAdmin && (
+                <Link to="/admin-dashboard">
+                  <Button
+                    variant={scrolled ? "outline" : "outline"}
+                    className={!scrolled ? "text-white border-white hover:bg-white/10" : "border-fixmyvibe-600 text-fixmyvibe-600 hover:bg-fixmyvibe-50"}
+                  >
+                    <ShieldAlert className="mr-2 h-4 w-4" />
+                    Administration
                   </Button>
                 </Link>
               )}
@@ -164,6 +188,16 @@ const Navbar = () => {
                 onClick={() => setIsMenuOpen(false)}
               >
                 Tableau de bord Dev
+              </Link>
+            )}
+            {isAdmin && (
+              <Link
+                to="/admin-dashboard"
+                className="flex items-center gap-2 text-gray-700 hover:text-fixmyvibe-600 transition-colors py-2 border-b"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <ShieldAlert className="h-5 w-5" />
+                Administration
               </Link>
             )}
             <Link
