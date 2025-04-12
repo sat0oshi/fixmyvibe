@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -35,7 +36,7 @@ const AdminDashboard = () => {
       if (profilesError) throw profilesError;
       
       // Fetch user emails from auth.users (via RLS policy)
-      const { data: usersData, error: usersError } = await supabase.auth.admin.listUsers();
+      const { data: authData, error: usersError } = await supabase.auth.admin.listUsers();
       
       if (usersError) {
         console.error("Error fetching user emails:", usersError);
@@ -51,9 +52,14 @@ const AdminDashboard = () => {
       } else {
         // Map profiles with real emails
         const emailMap = new Map();
-        usersData?.users?.forEach(user => {
-          emailMap.set(user.id, user.email);
-        });
+        // Check if authData.users is defined and is an array
+        if (authData && Array.isArray(authData.users)) {
+          authData.users.forEach(user => {
+            if (user && user.id && user.email) {
+              emailMap.set(user.id, user.email);
+            }
+          });
+        }
         
         const transformedUsers = profilesData?.map(profile => ({
           ...profile,
