@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { ArrowRight, Code, MessageSquare, Users, Check } from "lucide-react";
+import { ArrowRight, HelpCircle, Code, Users } from "lucide-react";
+import FAQ from "@/components/FAQ";
 
 const Index = () => {
   return (
@@ -13,71 +14,14 @@ const Index = () => {
       {/* Hero Section */}
       <section className="pt-32 pb-20 hero-gradient">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center">
-            <div className="md:w-1/2 text-white mb-12 md:mb-0">
-              <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
-                Résolvez vos problèmes de développement no-code gratuitement
-              </h1>
-              <p className="text-xl mb-8 text-white/90">
-                FixMyVibe connecte des développeurs no-code en difficulté avec
-                des développeurs expérimentés volontaires pour les aider.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/register">
-                  <Button size="lg" className="bg-white text-fixmyvibe-600 hover:bg-gray-100">
-                    Demander de l'aide
-                  </Button>
-                </Link>
-                <Link to="/register">
-                  <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/20">
-                    Devenir mentor
-                  </Button>
-                </Link>
-              </div>
-            </div>
-            <div className="md:w-1/2 flex justify-center">
-              <div className="w-full max-w-md bg-white rounded-lg shadow-xl p-6 md:p-8">
-                <h3 className="text-xl font-semibold mb-4">Comment ça marche</h3>
-                <div className="space-y-4">
-                  <div className="flex items-start gap-4">
-                    <div className="mt-1 bg-fixmyvibe-100 p-2 rounded-full">
-                      <Code size={20} className="text-fixmyvibe-600" />
-                    </div>
-                    <div>
-                      <h4 className="font-medium">Soumettez votre projet</h4>
-                      <p className="text-gray-600">Décrivez votre problème et partagez votre lien privé</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <div className="mt-1 bg-fixmyvibe-100 p-2 rounded-full">
-                      <Users size={20} className="text-fixmyvibe-600" />
-                    </div>
-                    <div>
-                      <h4 className="font-medium">Soyez mis en relation</h4>
-                      <p className="text-gray-600">Un développeur expérimenté vous contactera</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <div className="mt-1 bg-fixmyvibe-100 p-2 rounded-full">
-                      <MessageSquare size={20} className="text-fixmyvibe-600" />
-                    </div>
-                    <div>
-                      <h4 className="font-medium">Collaborez</h4>
-                      <p className="text-gray-600">Recevez de l'aide et des conseils personnalisés</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <div className="mt-1 bg-fixmyvibe-100 p-2 rounded-full">
-                      <Check size={20} className="text-fixmyvibe-600" />
-                    </div>
-                    <div>
-                      <h4 className="font-medium">Problème résolu</h4>
-                      <p className="text-gray-600">Terminez votre projet avec succès</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className="flex flex-col items-center text-center">
+            <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6 text-white">
+              Connectez développeurs et créateurs no-code pour des solutions gratuites
+            </h1>
+            <p className="text-xl mb-12 text-white/90 max-w-3xl">
+              FixMyVibe réunit des développeurs no-code en difficulté avec des développeurs
+              expérimentés qui souhaitent aider bénévolement.
+            </p>
           </div>
         </div>
         <div className="absolute w-full overflow-hidden h-16 -bottom-1">
@@ -92,63 +36,85 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* User Type Selection Section */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Pourquoi utiliser FixMyVibe</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Notre plateforme est conçue pour offrir une expérience d'entraide simple et efficace
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div className="bg-white p-8 rounded-lg shadow-md card-hover">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* For Developers */}
+            <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
               <div className="bg-fixmyvibe-100 w-14 h-14 rounded-lg flex items-center justify-center mb-6">
                 <Code size={24} className="text-fixmyvibe-600" />
               </div>
-              <h3 className="text-xl font-semibold mb-4">100% Gratuit</h3>
-              <p className="text-gray-600">
-                Nous croyons que l'entraide doit être accessible à tous. Aucun paiement, aucun abonnement.
+              <h2 className="text-2xl font-bold mb-4">For Developers</h2>
+              <p className="text-gray-600 mb-6">
+                Browse exciting projects, connect with clients, and grow your portfolio.
+                Help creators solve their problems and make a difference.
               </p>
+              <Link to="/register?role=developer">
+                <Button size="lg" className="w-full bg-fixmyvibe-600 hover:bg-fixmyvibe-700">
+                  Join as DevHelper
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
             </div>
 
-            <div className="bg-white p-8 rounded-lg shadow-md card-hover">
+            {/* For VibeCoders */}
+            <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
               <div className="bg-fixmyvibe-100 w-14 h-14 rounded-lg flex items-center justify-center mb-6">
                 <Users size={24} className="text-fixmyvibe-600" />
               </div>
-              <h3 className="text-xl font-semibold mb-4">Communauté de qualité</h3>
-              <p className="text-gray-600">
-                Des développeurs expérimentés volontaires prêts à partager leurs connaissances.
+              <h2 className="text-2xl font-bold mb-4">For VibeCoders</h2>
+              <p className="text-gray-600 mb-6">
+                Post your project and find the perfect dev to help you fix it! 
+                Get assistance with your no-code project from experienced developers.
               </p>
-            </div>
-
-            <div className="bg-white p-8 rounded-lg shadow-md card-hover">
-              <div className="bg-fixmyvibe-100 w-14 h-14 rounded-lg flex items-center justify-center mb-6">
-                <MessageSquare size={24} className="text-fixmyvibe-600" />
-              </div>
-              <h3 className="text-xl font-semibold mb-4">Aide personnalisée</h3>
-              <p className="text-gray-600">
-                Un accompagnement individuel adapté à votre projet spécifique et à vos besoins.
-              </p>
+              <Link to="/register?role=no-code">
+                <Button size="lg" className="w-full bg-fixmyvibe-accent-500 hover:bg-fixmyvibe-accent-600">
+                  Post a Project
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Featured Stats Section */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <h3 className="text-4xl font-bold text-fixmyvibe-600 mb-2">100%</h3>
+              <p className="text-gray-600">Gratuit pour tous</p>
+            </div>
+            <div className="text-center">
+              <h3 className="text-4xl font-bold text-fixmyvibe-600 mb-2">15 min</h3>
+              <p className="text-gray-600">Temps de réponse moyen</p>
+            </div>
+            <div className="text-center">
+              <h3 className="text-4xl font-bold text-fixmyvibe-600 mb-2">200+</h3>
+              <p className="text-gray-600">Projets résolus</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <FAQ />
 
       {/* CTA Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="bg-fixmyvibe-600 rounded-xl p-8 md:p-16 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Prêt à débloquer votre projet no-code ?
+              Prêt à rejoindre notre communauté ?
             </h2>
             <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Rejoignez notre communauté et trouvez l'aide dont vous avez besoin pour faire avancer votre projet.
+              Que vous soyez développeur ou créateur no-code, FixMyVibe est là pour vous connecter et vous aider.
             </p>
             <Link to="/register">
               <Button size="lg" className="bg-white text-fixmyvibe-600 hover:bg-gray-100">
-                Commencer maintenant 
+                S'inscrire maintenant 
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>

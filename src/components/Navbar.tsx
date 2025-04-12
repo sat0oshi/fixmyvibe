@@ -33,18 +33,35 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link to="/" className="flex items-center gap-2">
-          <span className="text-fixmyvibe-600 font-bold text-2xl">FixMyVibe</span>
+          <span className={`font-bold text-2xl transition-colors ${scrolled ? 'text-fixmyvibe-600' : 'text-white'}`}>
+            FixMyVibe
+          </span>
         </Link>
 
         {/* Navigation desktop */}
         <div className="hidden md:flex items-center gap-8">
-          <Link to="/projects" className="text-gray-700 hover:text-fixmyvibe-600 transition-colors">
+          <Link 
+            to="/projects" 
+            className={`transition-colors ${
+              scrolled ? 'text-gray-700 hover:text-fixmyvibe-600' : 'text-white/90 hover:text-white'
+            }`}
+          >
             Projets
           </Link>
-          <Link to="/developers" className="text-gray-700 hover:text-fixmyvibe-600 transition-colors">
+          <Link 
+            to="/developers" 
+            className={`transition-colors ${
+              scrolled ? 'text-gray-700 hover:text-fixmyvibe-600' : 'text-white/90 hover:text-white'
+            }`}
+          >
             Développeurs
           </Link>
-          <Link to="/about" className="text-gray-700 hover:text-fixmyvibe-600 transition-colors">
+          <Link 
+            to="/about" 
+            className={`transition-colors ${
+              scrolled ? 'text-gray-700 hover:text-fixmyvibe-600' : 'text-white/90 hover:text-white'
+            }`}
+          >
             À propos
           </Link>
         </div>
@@ -60,10 +77,17 @@ const Navbar = () => {
           ) : (
             <>
               <Link to="/login">
-                <Button variant="ghost">Connexion</Button>
+                <Button 
+                  variant={scrolled ? "ghost" : "outline"} 
+                  className={!scrolled ? "text-white border-white hover:bg-white/10" : ""}
+                >
+                  Connexion
+                </Button>
               </Link>
               <Link to="/register">
-                <Button className="bg-fixmyvibe-600 hover:bg-fixmyvibe-700">Inscription</Button>
+                <Button className={scrolled ? "bg-fixmyvibe-600 hover:bg-fixmyvibe-700" : "bg-white text-fixmyvibe-600 hover:bg-gray-100"}>
+                  Inscription
+                </Button>
               </Link>
             </>
           )}
@@ -76,6 +100,7 @@ const Navbar = () => {
             size="icon"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
+            className={!scrolled ? "text-white" : ""}
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </Button>
