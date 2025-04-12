@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
@@ -6,10 +5,8 @@ import Footer from "@/components/Footer";
 import { ArrowRight, HelpCircle, Code, Users, Check, Clock, FileCheck } from "lucide-react";
 import FAQ from "@/components/FAQ";
 import InfiniteGrid from "@/components/InfiniteGrid";
-
 const Index = () => {
-  return (
-    <div className="min-h-screen flex flex-col bg-gray-950 text-white">
+  return <div className="min-h-screen flex flex-col bg-gray-950 text-white">
       {/* Background Grid Animation */}
       <InfiniteGrid />
       
@@ -20,13 +17,8 @@ const Index = () => {
       <section className="pt-32 pb-20 relative">
         <div className="container mx-auto px-4">
           <div className="flex flex-col items-center text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 bg-gradient-to-br from-fixmyvibe-500 to-fixmyvibe-accent-500 bg-clip-text text-transparent">
-              Connectez développeurs et créateurs no-code pour des solutions gratuites
-            </h1>
-            <p className="text-xl mb-12 text-gray-300 max-w-3xl">
-              FixMyVibe réunit des développeurs no-code en difficulté avec des développeurs
-              expérimentés qui souhaitent aider bénévolement.
-            </p>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 bg-gradient-to-br from-fixmyvibe-500 to-fixmyvibe-accent-500 bg-clip-text text-transparent">Connectez développeurs et créateurs no-code </h1>
+            <p className="text-xl mb-12 text-gray-300 max-w-3xl">FixMyVibe réunit des développeurs no-code en difficulté avec des développeurs expérimentés qui souhaitent venir en aide.</p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link to="/register?role=no-code">
                 <Button size="lg" className="bg-fixmyvibe-accent-500 hover:bg-fixmyvibe-accent-600 text-white px-8">
@@ -69,7 +61,7 @@ const Index = () => {
               <div className="w-16 h-16 mx-auto bg-fixmyvibe-600/20 rounded-full flex items-center justify-center mb-4">
                 <FileCheck className="h-8 w-8 text-fixmyvibe-500" />
               </div>
-              <h3 className="text-4xl font-bold text-white mb-2">200+</h3>
+              <h3 className="text-4xl font-bold text-white mb-2">0+</h3>
               <p className="text-gray-400">Projets résolus</p>
             </div>
           </div>
@@ -225,8 +217,6 @@ const Index = () => {
 
       {/* Footer with dark theme */}
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
