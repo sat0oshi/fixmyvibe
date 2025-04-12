@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -27,7 +26,7 @@ const AdminDashboard = () => {
   const fetchData = async () => {
     setIsLoading(true);
     try {
-      // Récupérer les utilisateurs avec leurs emails
+      // Récupérer les utilisateurs avec leurs profiles
       const { data: profilesData, error: profilesError } = await supabase
         .from("profiles")
         .select("*")
@@ -42,30 +41,31 @@ const AdminDashboard = () => {
         console.error("Error fetching user emails:", usersError);
         
         // If we can't get emails, create users with dummy emails as a fallback
-        const transformedUsers = profilesData?.map(profile => ({
+        const transformedUsers: User[] = (profilesData || []).map(profile => ({
           ...profile,
           email: `${profile.username}@example.com`, // Fallback email
           role: profile.role as User['role'] // Type cast to ensure role matches expected type
-        })) || [];
+        }));
         
         setUsers(transformedUsers);
       } else {
         // Map profiles with real emails
-        const emailMap = new Map();
-        // Check if authData.users is defined and is an array
-        if (authData && Array.isArray(authData.users)) {
-          authData.users.forEach(user => {
-            if (user && user.id && user.email) {
+        const emailMap = new Map<string, string>();
+        
+        // Type check authData and authData.users
+        if (authData && 'users' in authData && Array.isArray(authData.users)) {
+          authData.users.forEach((user: any) => {
+            if (user && typeof user === 'object' && 'id' in user && 'email' in user) {
               emailMap.set(user.id, user.email);
             }
           });
         }
         
-        const transformedUsers = profilesData?.map(profile => ({
+        const transformedUsers: User[] = (profilesData || []).map(profile => ({
           ...profile,
           email: emailMap.get(profile.id) || `${profile.username}@example.com`,
           role: profile.role as User['role']
-        })) || [];
+        }));
         
         setUsers(transformedUsers);
       }
@@ -77,10 +77,10 @@ const AdminDashboard = () => {
         .order("created_at", { ascending: false });
 
       if (projectsError) throw projectsError;
-      setProjects(projectsData.map(project => ({
+      setProjects((projectsData || []).map(project => ({
         ...project,
         status: project.status as Project['status']
-      })) || []);
+      })));
 
       // Récupérer les connexions
       const { data: connectionsData, error: connectionsError } = await supabase

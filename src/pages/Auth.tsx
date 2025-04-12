@@ -58,11 +58,6 @@ export default function Auth() {
   const [activeTab, setActiveTab] = useState<string>("login");
   const location = useLocation();
   
-  // Si l'utilisateur est déjà connecté, le rediriger vers la page d'accueil
-  if (user) {
-    return <Navigate to="/" replace />;
-  }
-
   const loginForm = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -129,6 +124,11 @@ export default function Auth() {
       });
     }
   };
+
+  // Move the early return after all hooks have been initialized
+  if (user) {
+    return <Navigate to="/" replace />;
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-fixmyvibe-50 to-fixmyvibe-100 py-12 px-4 sm:px-6 lg:px-8">
