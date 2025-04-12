@@ -3,11 +3,12 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { UserCircle, Menu, X } from "lucide-react";
+import { useAuth } from "@/context/AuthContext";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { user, profile, signOut } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,8 +23,10 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // TODO: Remplacer par l'authentification réelle une fois Supabase connecté
-  // const user = null;
+  const handleSignOut = async () => {
+    await signOut();
+    setIsMenuOpen(false);
+  };
 
   return (
     <nav
@@ -68,15 +71,27 @@ const Navbar = () => {
 
         {/* Boutons d'authentification desktop */}
         <div className="hidden md:flex items-center gap-4">
-          {isLoggedIn ? (
-            <Link to="/dashboard">
-              <Button variant="ghost" className="rounded-full" size="icon">
-                <UserCircle className="h-6 w-6" />
+          {user ? (
+            <div className="flex items-center gap-4">
+              <span className={`transition-colors ${scrolled ? 'text-gray-700' : 'text-white'}`}>
+                {profile?.username || user.email}
+              </span>
+              <Link to="/dashboard">
+                <Button variant="ghost" className="rounded-full" size="icon">
+                  <UserCircle className="h-6 w-6" />
+                </Button>
+              </Link>
+              <Button 
+                variant={scrolled ? "outline" : "outline"} 
+                className={!scrolled ? "text-white border-white hover:bg-white/10" : ""}
+                onClick={handleSignOut}
+              >
+                Déconnexion
               </Button>
-            </Link>
+            </div>
           ) : (
             <>
-              <Link to="/login">
+              <Link to="/auth">
                 <Button 
                   variant={scrolled ? "ghost" : "outline"} 
                   className={!scrolled ? "text-white border-white hover:bg-white/10" : ""}
@@ -84,7 +99,7 @@ const Navbar = () => {
                   Connexion
                 </Button>
               </Link>
-              <Link to="/register">
+              <Link to="/auth">
                 <Button className={scrolled ? "bg-fixmyvibe-600 hover:bg-fixmyvibe-700" : "bg-white text-fixmyvibe-600 hover:bg-gray-100"}>
                   Inscription
                 </Button>
@@ -132,23 +147,32 @@ const Navbar = () => {
             >
               À propos
             </Link>
-            {isLoggedIn ? (
-              <Link
-                to="/dashboard"
-                className="flex items-center gap-2 text-gray-700 hover:text-fixmyvibe-600 transition-colors py-2"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                <UserCircle className="h-5 w-5" />
-                Mon profil
-              </Link>
+            {user ? (
+              <>
+                <Link
+                  to="/dashboard"
+                  className="flex items-center gap-2 text-gray-700 hover:text-fixmyvibe-600 transition-colors py-2 border-b"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <UserCircle className="h-5 w-5" />
+                  Mon profil
+                </Link>
+                <Button 
+                  variant="outline" 
+                  className="w-full"
+                  onClick={handleSignOut}
+                >
+                  Déconnexion
+                </Button>
+              </>
             ) : (
               <div className="flex flex-col gap-2 mt-2">
-                <Link to="/login" onClick={() => setIsMenuOpen(false)}>
+                <Link to="/auth" onClick={() => setIsMenuOpen(false)}>
                   <Button variant="outline" className="w-full">
                     Connexion
                   </Button>
                 </Link>
-                <Link to="/register" onClick={() => setIsMenuOpen(false)}>
+                <Link to="/auth" onClick={() => setIsMenuOpen(false)}>
                   <Button className="w-full bg-fixmyvibe-600 hover:bg-fixmyvibe-700">
                     Inscription
                   </Button>
