@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
-import { UserCircle, Menu, X, FilePlus } from "lucide-react";
+import { UserCircle, Menu, X, FilePlus, HelpingHand } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 
 const Navbar = () => {
@@ -51,14 +51,16 @@ const Navbar = () => {
           >
             Projets
           </Link>
-          <Link 
-            to="/developers" 
-            className={`transition-colors ${
-              scrolled ? 'text-gray-700 hover:text-fixmyvibe-600' : 'text-white/90 hover:text-white'
-            }`}
-          >
-            Développeurs
-          </Link>
+          {profile?.role === "developer" && (
+            <Link 
+              to="/helper-dashboard" 
+              className={`transition-colors ${
+                scrolled ? 'text-gray-700 hover:text-fixmyvibe-600' : 'text-white/90 hover:text-white'
+              }`}
+            >
+              Tableau de bord Dev
+            </Link>
+          )}
           <Link 
             to="/about" 
             className={`transition-colors ${
@@ -81,6 +83,17 @@ const Navbar = () => {
                   >
                     <FilePlus className="mr-2 h-4 w-4" />
                     Soumettre un projet
+                  </Button>
+                </Link>
+              )}
+              {profile?.role === "developer" && (
+                <Link to="/helper-dashboard">
+                  <Button
+                    variant={scrolled ? "outline" : "outline"}
+                    className={!scrolled ? "text-white border-white hover:bg-white/10" : "border-fixmyvibe-600 text-fixmyvibe-600 hover:bg-fixmyvibe-50"}
+                  >
+                    <HelpingHand className="mr-2 h-4 w-4" />
+                    Aider des projets
                   </Button>
                 </Link>
               )}
@@ -144,13 +157,15 @@ const Navbar = () => {
             >
               Projets
             </Link>
-            <Link
-              to="/developers"
-              className="text-gray-700 hover:text-fixmyvibe-600 transition-colors py-2 border-b"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Développeurs
-            </Link>
+            {profile?.role === "developer" && (
+              <Link
+                to="/helper-dashboard"
+                className="text-gray-700 hover:text-fixmyvibe-600 transition-colors py-2 border-b"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Tableau de bord Dev
+              </Link>
+            )}
             <Link
               to="/about"
               className="text-gray-700 hover:text-fixmyvibe-600 transition-colors py-2 border-b"
@@ -166,6 +181,16 @@ const Navbar = () => {
               >
                 <FilePlus className="h-5 w-5" />
                 Soumettre un projet
+              </Link>
+            )}
+            {user && profile?.role === "developer" && (
+              <Link
+                to="/helper-dashboard"
+                className="flex items-center gap-2 text-gray-700 hover:text-fixmyvibe-600 transition-colors py-2 border-b"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <HelpingHand className="h-5 w-5" />
+                Aider des projets
               </Link>
             )}
             {user ? (

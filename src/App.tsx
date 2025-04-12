@@ -11,6 +11,8 @@ import ProjectDetail from "./pages/ProjectDetail";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 import SubmitProject from "./pages/SubmitProject";
+import HelperDashboard from "./pages/HelperDashboard";
+import Chat from "./pages/Chat";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 const queryClient = new QueryClient();
@@ -32,6 +34,22 @@ const App = () => (
               element={
                 <ProtectedRoute requiredRole="no-code">
                   <SubmitProject />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/helper-dashboard" 
+              element={
+                <ProtectedRoute requiredRole="developer">
+                  <HelperDashboard />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/chat/:connectionId" 
+              element={
+                <ProtectedRoute>
+                  <Chat />
                 </ProtectedRoute>
               } 
             />

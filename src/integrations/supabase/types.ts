@@ -9,6 +9,73 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      connections: {
+        Row: {
+          created_at: string
+          helper_id: string
+          id: string
+          project_id: string
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          helper_id: string
+          id?: string
+          project_id: string
+          status?: string
+        }
+        Update: {
+          created_at?: string
+          helper_id?: string
+          id?: string
+          project_id?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "connections_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      messages: {
+        Row: {
+          connection_id: string
+          content: string
+          created_at: string
+          id: string
+          read: boolean
+          user_id: string
+        }
+        Insert: {
+          connection_id: string
+          content: string
+          created_at?: string
+          id?: string
+          read?: boolean
+          user_id: string
+        }
+        Update: {
+          connection_id?: string
+          content?: string
+          created_at?: string
+          id?: string
+          read?: boolean
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "messages_connection_id_fkey"
+            columns: ["connection_id"]
+            isOneToOne: false
+            referencedRelation: "connections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -46,6 +113,7 @@ export type Database = {
         Row: {
           created_at: string
           description: string
+          helper_id: string | null
           id: string
           private_link: string | null
           status: string
@@ -57,6 +125,7 @@ export type Database = {
         Insert: {
           created_at?: string
           description: string
+          helper_id?: string | null
           id?: string
           private_link?: string | null
           status?: string
@@ -68,6 +137,7 @@ export type Database = {
         Update: {
           created_at?: string
           description?: string
+          helper_id?: string | null
           id?: string
           private_link?: string | null
           status?: string
