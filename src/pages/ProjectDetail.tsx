@@ -11,7 +11,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Project } from "@/types";
 import { 
   Clock, Calendar, User, ArrowLeft, ExternalLink, MessageSquare, 
-  Share2, Bookmark, BookmarkCheck, HelpingHand
+  Share2, Bookmark, BookmarkCheck, HelpingHand, Mail
 } from "lucide-react";
 
 const ProjectDetail = () => {
@@ -20,7 +20,7 @@ const ProjectDetail = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [project, setProject] = useState<Project | null>(null);
-  const [projectOwner, setProjectOwner] = useState<{ username: string } | null>(null);
+  const [projectOwner, setProjectOwner] = useState<{ username: string; email?: string } | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaved, setIsSaved] = useState(false);
   const [connection, setConnection] = useState<{ id: string } | null>(null);
@@ -45,7 +45,7 @@ const ProjectDetail = () => {
           status: data.status as Project['status']
         });
 
-        // Fetch project owner details
+        // Fetch project owner details with email
         const { data: ownerData, error: ownerError } = await supabase
           .from("profiles")
           .select("username")
@@ -53,7 +53,25 @@ const ProjectDetail = () => {
           .single();
 
         if (ownerError) throw ownerError;
-        setProjectOwner(ownerData);
+        
+        // Get the email from auth.users table (if the user is authenticated)
+        let ownerEmail;
+        if (user) {
+          const { data: userData, error: userError } = await supabase
+            .from("users")
+            .select("email")
+            .eq("id", data.user_id)
+            .single();
+            
+          if (!userError && userData) {
+            ownerEmail = userData.email;
+          }
+        }
+        
+        setProjectOwner({
+          ...ownerData,
+          email: ownerEmail
+        });
 
         // Check if current user is the helper
         if (user && data.helper_id === user.id) {
@@ -162,6 +180,18 @@ const ProjectDetail = () => {
   const toggleSave = () => {
     setIsSaved(!isSaved);
     // À implémenter avec Supabase
+  };
+
+  const contactOwner = () => {
+    if (projectOwner?.email) {
+      window.location.href = `mailto:${projectOwner.email}?subject=À propos de votre projet: ${project?.title}`;
+    } else {
+      toast({
+        title: "Information manquante",
+        description: "L'email du créateur n'est pas disponible. Utilisez le chat après avoir accepté le projet.",
+        variant: "default",
+      });
+    }
   };
 
   if (isLoading) {
@@ -311,6 +341,17 @@ const ProjectDetail = () => {
                   Retour aux projets
                 </Button>
               </Link>
+              
+              {project.status === "pending" && !isOwner && (
+                <Button 
+                  variant="outline" 
+                  className="bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100"
+                  onClick={contactOwner}
+                >
+                  <Mail size={18} className="mr-2" />
+                  Contacter le créateur
+                </Button>
+              )}
               
               {canAcceptProject && (
                 <Button 
