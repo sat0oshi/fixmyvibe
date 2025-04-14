@@ -19,16 +19,16 @@ const Index = () => {
       <section className="pt-32 pb-20 relative">
         <div className="container mx-auto px-4">
           <div className="flex flex-col items-center text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 bg-gradient-to-br from-fixmyvibe-500 to-fixmyvibe-accent-500 bg-clip-text text-transparent">Connectez développeurs et créateurs no-code </h1>
-            <p className="text-xl mb-12 text-gray-300 max-w-3xl">FixMyVibe réunit des développeurs no-code en difficulté avec des développeurs expérimentés qui souhaitent venir en aide.</p>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 bg-gradient-to-br from-fixmyvibe-500 to-fixmyvibe-accent-500 bg-clip-text text-transparent">VIBECODERS + REALCODERS </h1>
+            <p className="text-xl mb-12 text-gray-300 max-w-3xl">FixMyVibe réunit des Vibecoders en difficulté avec des développeurs expérimentés qui souhaitent venir en aide.</p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="https://fixmyvibe.lovable.app/auth">
+              <Link to="/register?role=no-code">
                 <Button size="lg" className="bg-fixmyvibe-accent-500 hover:bg-fixmyvibe-accent-600 text-white px-8">
                   Poster un projet
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
-              <Link to="https://fixmyvibe.lovable.app/auth">
+              <Link to="/register?role=developer">
                 <Button size="lg" className="bg-fixmyvibe-600 hover:bg-fixmyvibe-700 text-white px-8">
                   Devenir Helper
                   <ArrowRight className="ml-2 h-5 w-5" />
@@ -84,7 +84,7 @@ const Index = () => {
                 Aidez la communauté et développez votre portfolio.
                 Parcourez des projets passionnants, connectez-vous avec des clients et faites une différence.
               </p>
-              <Link to="https://fixmyvibe.lovable.app/auth">
+              <Link to="/register?role=developer">
                 <Button size="lg" className="w-full bg-fixmyvibe-600 hover:bg-fixmyvibe-700 text-white">
                   Rejoindre en tant que DevHelper
                   <ArrowRight className="ml-2 h-5 w-5" />
@@ -102,7 +102,7 @@ const Index = () => {
                 Trouvez rapidement l'aide dont vous avez besoin.
                 Postez votre projet et trouvez le développeur parfait pour vous aider à le résoudre!
               </p>
-              <Link to="https://fixmyvibe.lovable.app/auth">
+              <Link to="/register?role=no-code">
                 <Button size="lg" className="w-full bg-fixmyvibe-accent-500 hover:bg-fixmyvibe-accent-600 text-white">
                   Poster un Projet
                   <ArrowRight className="ml-2 h-5 w-5" />
@@ -207,7 +207,7 @@ const Index = () => {
             <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
               Que vous soyez développeur ou créateur no-code, FixMyVibe est là pour vous connecter et vous aider.
             </p>
-            <Link to="https://fixmyvibe.lovable.app/auth">
+            <Link to="/register">
               <Button size="lg" className="bg-white text-fixmyvibe-600 hover:bg-gray-100">
                 S'inscrire maintenant 
                 <ArrowRight className="ml-2 h-5 w-5" />
