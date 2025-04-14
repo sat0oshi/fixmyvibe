@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
@@ -32,12 +33,20 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-white shadow-md py-2" : "bg-transparent py-4"
+        scrolled 
+          ? "bg-white dark:bg-gray-900 shadow-md py-2" 
+          : "bg-transparent dark:bg-transparent py-4"
       }`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link to="/" className="flex items-center gap-2">
-          <span className={`font-bold text-2xl transition-colors ${scrolled ? 'text-fixmyvibe-600' : 'text-white'}`}>
+          <span 
+            className={`font-bold text-2xl transition-colors ${
+              scrolled 
+                ? 'text-fixmyvibe-600 dark:text-fixmyvibe-400' 
+                : 'text-white dark:text-white'
+            }`}
+          >
             FixMyVibe
           </span>
         </Link>
@@ -46,7 +55,9 @@ const Navbar = () => {
           <Link 
             to="/projects" 
             className={`transition-colors ${
-              scrolled ? 'text-gray-700 hover:text-fixmyvibe-600' : 'text-white/90 hover:text-white'
+              scrolled 
+                ? 'text-gray-700 hover:text-fixmyvibe-600 dark:text-gray-200 dark:hover:text-fixmyvibe-400' 
+                : 'text-white/90 hover:text-white'
             }`}
           >
             Projets
@@ -55,7 +66,9 @@ const Navbar = () => {
             <Link 
               to="/helper-dashboard" 
               className={`transition-colors ${
-                scrolled ? 'text-gray-700 hover:text-fixmyvibe-600' : 'text-white/90 hover:text-white'
+                scrolled 
+                  ? 'text-gray-700 hover:text-fixmyvibe-600 dark:text-gray-200 dark:hover:text-fixmyvibe-400' 
+                  : 'text-white/90 hover:text-white'
               }`}
             >
               Tableau de bord Dev
@@ -65,7 +78,9 @@ const Navbar = () => {
             <Link 
               to="/admin-dashboard" 
               className={`transition-colors ${
-                scrolled ? 'text-gray-700 hover:text-fixmyvibe-600' : 'text-white/90 hover:text-white'
+                scrolled 
+                  ? 'text-gray-700 hover:text-fixmyvibe-600 dark:text-gray-200 dark:hover:text-fixmyvibe-400' 
+                  : 'text-white/90 hover:text-white'
               }`}
             >
               Administration
@@ -74,7 +89,9 @@ const Navbar = () => {
           <Link 
             to="/about" 
             className={`transition-colors ${
-              scrolled ? 'text-gray-700 hover:text-fixmyvibe-600' : 'text-white/90 hover:text-white'
+              scrolled 
+                ? 'text-gray-700 hover:text-fixmyvibe-600 dark:text-gray-200 dark:hover:text-fixmyvibe-400' 
+                : 'text-white/90 hover:text-white'
             }`}
           >
             À propos
@@ -88,7 +105,11 @@ const Navbar = () => {
                 <Link to="/submit-project">
                   <Button
                     variant={scrolled ? "outline" : "outline"}
-                    className={!scrolled ? "text-white border-white hover:bg-white/10" : "border-fixmyvibe-600 text-fixmyvibe-600 hover:bg-fixmyvibe-50"}
+                    className={
+                      !scrolled 
+                        ? "text-white border-white hover:bg-white/10" 
+                        : "border-fixmyvibe-600 text-fixmyvibe-600 hover:bg-fixmyvibe-50 dark:border-fixmyvibe-400 dark:text-fixmyvibe-400 dark:hover:bg-fixmyvibe-950/20"
+                    }
                   >
                     <FilePlus className="mr-2 h-4 w-4" />
                     Soumettre un projet
@@ -99,7 +120,11 @@ const Navbar = () => {
                 <Link to="/helper-dashboard">
                   <Button
                     variant={scrolled ? "outline" : "outline"}
-                    className={!scrolled ? "text-white border-white hover:bg-white/10" : "border-fixmyvibe-600 text-fixmyvibe-600 hover:bg-fixmyvibe-50"}
+                    className={
+                      !scrolled 
+                        ? "text-white border-white hover:bg-white/10" 
+                        : "border-fixmyvibe-600 text-fixmyvibe-600 hover:bg-fixmyvibe-50 dark:border-fixmyvibe-400 dark:text-fixmyvibe-400 dark:hover:bg-fixmyvibe-950/20"
+                    }
                   >
                     <HelpingHand className="mr-2 h-4 w-4" />
                     Aider des projets
@@ -110,7 +135,11 @@ const Navbar = () => {
                 <Link to="/admin-dashboard">
                   <Button
                     variant={scrolled ? "outline" : "outline"}
-                    className={!scrolled ? "text-white border-white hover:bg-white/10" : "border-fixmyvibe-600 text-fixmyvibe-600 hover:bg-fixmyvibe-50"}
+                    className={
+                      !scrolled 
+                        ? "text-white border-white hover:bg-white/10" 
+                        : "border-fixmyvibe-600 text-fixmyvibe-600 hover:bg-fixmyvibe-50 dark:border-fixmyvibe-400 dark:text-fixmyvibe-400 dark:hover:bg-fixmyvibe-950/20"
+                    }
                   >
                     <ShieldAlert className="mr-2 h-4 w-4" />
                     Administration
@@ -118,13 +147,25 @@ const Navbar = () => {
                 </Link>
               )}
               <Link to="/profile">
-                <Button variant="ghost" className="rounded-full" size="icon">
+                <Button 
+                  variant="ghost" 
+                  className={`rounded-full ${
+                    scrolled 
+                      ? 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800' 
+                      : 'text-white hover:bg-white/10'
+                  }`} 
+                  size="icon"
+                >
                   <UserCircle className="h-6 w-6" />
                 </Button>
               </Link>
               <Button 
                 variant={scrolled ? "outline" : "outline"} 
-                className={!scrolled ? "text-white border-white hover:bg-white/10" : ""}
+                className={
+                  !scrolled 
+                    ? "text-white border-white hover:bg-white/10" 
+                    : "border-fixmyvibe-600 text-fixmyvibe-600 hover:bg-fixmyvibe-50 dark:border-fixmyvibe-400 dark:text-fixmyvibe-400 dark:hover:bg-fixmyvibe-950/20"
+                }
                 onClick={handleSignOut}
               >
                 Déconnexion
@@ -135,13 +176,23 @@ const Navbar = () => {
               <Link to="/auth">
                 <Button 
                   variant={scrolled ? "ghost" : "outline"} 
-                  className={!scrolled ? "text-white border-white hover:bg-white/10" : ""}
+                  className={
+                    !scrolled 
+                      ? "text-white border-white hover:bg-white/10" 
+                      : "text-fixmyvibe-600 hover:bg-fixmyvibe-50 dark:text-fixmyvibe-400 dark:hover:bg-fixmyvibe-950/20"
+                  }
                 >
                   Connexion
                 </Button>
               </Link>
               <Link to="/auth">
-                <Button className={scrolled ? "bg-fixmyvibe-600 hover:bg-fixmyvibe-700" : "bg-white text-fixmyvibe-600 hover:bg-gray-100"}>
+                <Button 
+                  className={
+                    scrolled 
+                      ? "bg-fixmyvibe-600 hover:bg-fixmyvibe-700 text-white dark:bg-fixmyvibe-400 dark:hover:bg-fixmyvibe-500" 
+                      : "bg-white text-fixmyvibe-600 hover:bg-gray-100"
+                  }
+                >
                   Inscription
                 </Button>
               </Link>
@@ -155,7 +206,11 @@ const Navbar = () => {
             size="icon"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
-            className={!scrolled ? "text-white" : ""}
+            className={`${
+              !scrolled 
+                ? "text-white" 
+                : "text-gray-700 dark:text-gray-200"
+            }`}
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </Button>
@@ -163,11 +218,11 @@ const Navbar = () => {
       </div>
 
       {isMenuOpen && (
-        <div className="md:hidden bg-white w-full py-4 shadow-lg">
+        <div className="md:hidden bg-white dark:bg-gray-900 w-full py-4 shadow-lg">
           <div className="container mx-auto px-4 flex flex-col gap-4">
             <Link
               to="/projects"
-              className="text-gray-700 hover:text-fixmyvibe-600 transition-colors py-2 border-b"
+              className="text-gray-700 dark:text-gray-200 hover:text-fixmyvibe-600 dark:hover:text-fixmyvibe-400 transition-colors py-2 border-b"
               onClick={() => setIsMenuOpen(false)}
             >
               Projets
@@ -175,7 +230,7 @@ const Navbar = () => {
             {profile?.role === "developer" && (
               <Link
                 to="/helper-dashboard"
-                className="text-gray-700 hover:text-fixmyvibe-600 transition-colors py-2 border-b"
+                className="text-gray-700 dark:text-gray-200 hover:text-fixmyvibe-600 dark:hover:text-fixmyvibe-400 transition-colors py-2 border-b"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Tableau de bord Dev
@@ -184,7 +239,7 @@ const Navbar = () => {
             {isAdmin && (
               <Link
                 to="/admin-dashboard"
-                className="flex items-center gap-2 text-gray-700 hover:text-fixmyvibe-600 transition-colors py-2 border-b"
+                className="flex items-center gap-2 text-gray-700 dark:text-gray-200 hover:text-fixmyvibe-600 dark:hover:text-fixmyvibe-400 transition-colors py-2 border-b"
                 onClick={() => setIsMenuOpen(false)}
               >
                 <ShieldAlert className="h-5 w-5" />
@@ -193,7 +248,7 @@ const Navbar = () => {
             )}
             <Link
               to="/about"
-              className="text-gray-700 hover:text-fixmyvibe-600 transition-colors py-2 border-b"
+              className="text-gray-700 dark:text-gray-200 hover:text-fixmyvibe-600 dark:hover:text-fixmyvibe-400 transition-colors py-2 border-b"
               onClick={() => setIsMenuOpen(false)}
             >
               À propos
@@ -201,7 +256,7 @@ const Navbar = () => {
             {user && profile?.role === "no-code" && (
               <Link
                 to="/submit-project"
-                className="flex items-center gap-2 text-gray-700 hover:text-fixmyvibe-600 transition-colors py-2 border-b"
+                className="flex items-center gap-2 text-gray-700 dark:text-gray-200 hover:text-fixmyvibe-600 dark:hover:text-fixmyvibe-400 transition-colors py-2 border-b"
                 onClick={() => setIsMenuOpen(false)}
               >
                 <FilePlus className="h-5 w-5" />
@@ -211,7 +266,7 @@ const Navbar = () => {
             {user && profile?.role === "developer" && (
               <Link
                 to="/helper-dashboard"
-                className="flex items-center gap-2 text-gray-700 hover:text-fixmyvibe-600 transition-colors py-2 border-b"
+                className="flex items-center gap-2 text-gray-700 dark:text-gray-200 hover:text-fixmyvibe-600 dark:hover:text-fixmyvibe-400 transition-colors py-2 border-b"
                 onClick={() => setIsMenuOpen(false)}
               >
                 <HelpingHand className="h-5 w-5" />
@@ -222,7 +277,7 @@ const Navbar = () => {
               <>
                 <Link
                   to="/profile"
-                  className="flex items-center gap-2 text-gray-700 hover:text-fixmyvibe-600 transition-colors py-2 border-b"
+                  className="flex items-center gap-2 text-gray-700 dark:text-gray-200 hover:text-fixmyvibe-600 dark:hover:text-fixmyvibe-400 transition-colors py-2 border-b"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <UserCircle className="h-5 w-5" />
@@ -230,7 +285,7 @@ const Navbar = () => {
                 </Link>
                 <Button 
                   variant="outline" 
-                  className="w-full"
+                  className="w-full text-fixmyvibe-600 dark:text-fixmyvibe-400 border-fixmyvibe-600 dark:border-fixmyvibe-400 hover:bg-fixmyvibe-50 dark:hover:bg-fixmyvibe-950/20"
                   onClick={handleSignOut}
                 >
                   Déconnexion
@@ -239,12 +294,17 @@ const Navbar = () => {
             ) : (
               <div className="flex flex-col gap-2 mt-2">
                 <Link to="/auth" onClick={() => setIsMenuOpen(false)}>
-                  <Button variant="outline" className="w-full">
+                  <Button 
+                    variant="outline" 
+                    className="w-full text-fixmyvibe-600 dark:text-fixmyvibe-400 border-fixmyvibe-600 dark:border-fixmyvibe-400 hover:bg-fixmyvibe-50 dark:hover:bg-fixmyvibe-950/20"
+                  >
                     Connexion
                   </Button>
                 </Link>
                 <Link to="/auth" onClick={() => setIsMenuOpen(false)}>
-                  <Button className="w-full bg-fixmyvibe-600 hover:bg-fixmyvibe-700">
+                  <Button 
+                    className="w-full bg-fixmyvibe-600 hover:bg-fixmyvibe-700 text-white dark:bg-fixmyvibe-400 dark:hover:bg-fixmyvibe-500"
+                  >
                     Inscription
                   </Button>
                 </Link>
