@@ -14,12 +14,12 @@ const Footer = () => {
               <span className="text-fixmyvibe-500 font-bold text-xl">FixMyVibe</span>
             </Link>
             <p className="mt-4 text-gray-400 max-w-md">
-              FixMyVibe connecte gratuitement les développeurs no-code en difficulté avec des développeurs 
-              expérimentés volontaires pour les aider à résoudre leurs problèmes.
+              FixMyVibe connecte gratuitement les Vibecoders en difficulté avec des développeurs 
+              expérimentés pour les aider à résoudre leurs problèmes. 
             </p>
             <div className="flex items-center gap-4 mt-6">
               <a
-                href="https://github.com"
+                href="https://github.com/sat0oshi/fixmyvibe"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
@@ -28,7 +28,7 @@ const Footer = () => {
                 <Github size={20} />
               </a>
               <a
-                href="https://twitter.com"
+                href="https://x.com/sat0oshi"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Twitter"
@@ -76,11 +76,6 @@ const Footer = () => {
               <li>
                 <Link to="/privacy" className="text-gray-400 hover:text-fixmyvibe-500 transition-colors">
                   Politique de confidentialité
-                </Link>
-              </li>
-              <li>
-                <Link to="/cookies" className="text-gray-400 hover:text-fixmyvibe-500 transition-colors">
-                  Politique de cookies
                 </Link>
               </li>
             </ul>
