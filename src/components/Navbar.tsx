@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
@@ -10,7 +9,6 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const { user, profile, signOut } = useAuth();
 
-  // Vérifier si l'utilisateur est admin ou a l'email spécifique
   const isAdmin = profile?.role === 'admin' || user?.email === 'kncsprod@gmail.com';
 
   useEffect(() => {
@@ -44,7 +42,6 @@ const Navbar = () => {
           </span>
         </Link>
 
-        {/* Navigation desktop */}
         <div className="hidden md:flex items-center gap-8">
           <Link 
             to="/projects" 
@@ -84,7 +81,6 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Boutons d'authentification desktop */}
         <div className="hidden md:flex items-center gap-4">
           {user ? (
             <div className="flex items-center gap-4">
@@ -121,10 +117,7 @@ const Navbar = () => {
                   </Button>
                 </Link>
               )}
-              <span className={`transition-colors ${scrolled ? 'text-gray-700' : 'text-white'}`}>
-                {profile?.username || user.email}
-              </span>
-              <Link to="/dashboard">
+              <Link to="/profile">
                 <Button variant="ghost" className="rounded-full" size="icon">
                   <UserCircle className="h-6 w-6" />
                 </Button>
@@ -156,7 +149,6 @@ const Navbar = () => {
           )}
         </div>
 
-        {/* Menu mobile */}
         <div className="md:hidden flex items-center">
           <Button
             variant="ghost"
@@ -170,7 +162,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Menu mobile déroulant */}
       {isMenuOpen && (
         <div className="md:hidden bg-white w-full py-4 shadow-lg">
           <div className="container mx-auto px-4 flex flex-col gap-4">
@@ -230,7 +221,7 @@ const Navbar = () => {
             {user ? (
               <>
                 <Link
-                  to="/dashboard"
+                  to="/profile"
                   className="flex items-center gap-2 text-gray-700 hover:text-fixmyvibe-600 transition-colors py-2 border-b"
                   onClick={() => setIsMenuOpen(false)}
                 >
