@@ -1,4 +1,24 @@
-# Welcome to your Lovable project
+# FixMyVibe
+
+FixMyVibe est une plateforme gratuite qui connecte les créateurs no-code en difficulté avec des développeurs expérimentés prêts à les aider.
+
+## 🚀 Fonctionnalités principales
+- Poster un projet en quelques secondes
+- Recevoir de l'aide d'un Helper expérimenté
+- 100% gratuit, 100% communautaire
+
+## 🛠️ Stack technique
+- React
+- Vite
+- TailwindCSS
+- TypeScript
+
+## 🌐 Lien vers le site
+[👉 Accéder à FixMyVibe](https://fixmyvibe.lovable.app/)
+
+## 💬 Contribuer
+Envie d'améliorer FixMyVibe ? Forkez ce repo, proposez vos améliorations et participez à l'aventure !
+
 
 ## Project info
 
