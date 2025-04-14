@@ -12,8 +12,13 @@ import { useToast } from "@/hooks/use-toast";
 import { Project } from "@/types";
 import { 
   Clock, Calendar, User, ArrowLeft, ExternalLink, MessageSquare, 
-  Share2, Bookmark, BookmarkCheck, HelpingHand, Mail
+  Share2, Bookmark, BookmarkCheck, HelpingHand, Mail, AlertCircle
 } from "lucide-react";
+import { 
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 const ProjectDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -277,7 +282,7 @@ const ProjectDetail = () => {
               ))}
             </div>
 
-            <div className="flex flex-wrap gap-4 text-sm text-gray-500 mb-8">
+            <div className="flex flex-wrap gap-4 text-sm text-gray-500 mb-4">
               <div className="flex items-center">
                 <Clock size={16} className="mr-1" />
                 <span>Posté le {formatDate(project.created_at)}</span>
@@ -287,6 +292,57 @@ const ProjectDetail = () => {
                 <span>Par {projectOwner.username}</span>
               </div>
             </div>
+
+            {/* Nouveau bloc pour contacter le créateur */}
+            {!isOwner && (
+              <div className="mb-8 flex flex-col sm:flex-row gap-3 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                <div className="flex items-start">
+                  <AlertCircle size={20} className="text-blue-600 mt-1 mr-2 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-medium text-blue-800">Vous avez des questions sur ce projet ?</h3>
+                    <p className="text-blue-700 text-sm mt-1">Contactez directement le créateur du projet pour plus d'informations avant d'accepter.</p>
+                  </div>
+                </div>
+                <div className="flex-shrink-0 self-center mt-2 sm:mt-0 sm:ml-auto">
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button 
+                        className="bg-blue-600 hover:bg-blue-700 text-white"
+                      >
+                        <Mail size={18} className="mr-2" />
+                        Contacter le créateur
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-80">
+                      <div className="space-y-3">
+                        <h4 className="font-medium">Contact du créateur</h4>
+                        <p className="text-sm text-gray-500">
+                          Créateur: <span className="font-medium text-gray-700">{projectOwner.username}</span>
+                        </p>
+                        {projectOwner?.email ? (
+                          <>
+                            <p className="text-sm text-gray-500">
+                              Email: <span className="font-medium text-gray-700">{projectOwner.email}</span>
+                            </p>
+                            <Button 
+                              className="w-full bg-fixmyvibe-600 hover:bg-fixmyvibe-700"
+                              onClick={contactOwner}
+                            >
+                              <Mail size={18} className="mr-2" />
+                              Envoyer un email
+                            </Button>
+                          </>
+                        ) : (
+                          <p className="text-sm text-amber-600">
+                            L'email du créateur n'est pas disponible.
+                          </p>
+                        )}
+                      </div>
+                    </PopoverContent>
+                  </Popover>
+                </div>
+              </div>
+            )}
 
             <div className="prose max-w-none mb-8">
               <h3 className="text-lg font-semibold mb-3">Description du problème</h3>
