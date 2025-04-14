@@ -3,7 +3,9 @@ import NavButton from "@/components/navbar/NavButton";
 import { User } from "@/types";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { UserCircle, FilePlus, HelpingHand, ShieldAlert } from "lucide-react";
+import { UserCircle, FilePlus, HelpingHand, ShieldAlert, LogOut } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { useNavigate } from "react-router-dom";
 
 type DesktopUserActionsProps = {
   user: any;
@@ -20,6 +22,26 @@ const DesktopUserActions = ({
   isScrolled, 
   handleSignOut 
 }: DesktopUserActionsProps) => {
+  const { toast } = useToast();
+  const navigate = useNavigate();
+
+  const onSignOut = async () => {
+    try {
+      await handleSignOut();
+      toast({
+        title: "Déconnexion réussie",
+        description: "À bientôt !",
+      });
+      navigate("/");
+    } catch (error) {
+      toast({
+        title: "Erreur lors de la déconnexion",
+        description: "Une erreur est survenue, veuillez réessayer.",
+        variant: "destructive",
+      });
+    }
+  };
+
   if (!user) {
     return (
       <div className="hidden md:flex items-center gap-4">
@@ -85,7 +107,8 @@ const DesktopUserActions = ({
       <NavButton 
         variant="outline" 
         isScrolled={isScrolled}
-        onClick={handleSignOut}
+        onClick={onSignOut}
+        icon={LogOut}
       >
         Déconnexion
       </NavButton>
