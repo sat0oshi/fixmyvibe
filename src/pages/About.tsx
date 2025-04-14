@@ -18,7 +18,7 @@ const About = () => {
             <div className="prose dark:prose-invert max-w-none">
               <p className="text-lg text-gray-700 dark:text-gray-300">
                 FixMyVibe est né d'une vision simple : créer un pont entre les développeurs no-code qui rencontrent des difficultés 
-                et des développeurs expérimentés prêts à les aider gratuitement.
+                et des développeurs expérimentés prêts à les aider.
               </p>
               
               <p className="text-lg text-gray-700 dark:text-gray-300 mt-4">
@@ -57,7 +57,7 @@ const About = () => {
                   <Button 
                     variant="outline" 
                     className="gap-2"
-                    onClick={() => window.open('https://instagram.com/sat0oshi', '_blank')}
+                    onClick={() => window.open('https://instagram.com/sat0oshi_ai', '_blank')}
                   >
                     <Instagram className="h-4 w-4" />
                     <span>Instagram</span>
