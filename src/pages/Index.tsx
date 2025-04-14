@@ -19,7 +19,7 @@ const Index = () => {
       <section className="pt-32 pb-20 relative">
         <div className="container mx-auto px-4">
           <div className="flex flex-col items-center text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 bg-gradient-to-br from-fixmyvibe-500 to-fixmyvibe-accent-500 bg-clip-text text-transparent">Connectez développeurs et créateurs no-code </h1>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 bg-gradient-to-br from-fixmyvibe-500 to-fixmyvibe-accent-500 bg-clip-text text-transparent">Créer sans limites. Avancer ensemble ! </h1>
             <p className="text-xl mb-12 text-gray-300 max-w-3xl">FixMyVibe réunit des développeurs no-code en difficulté avec des développeurs expérimentés qui souhaitent venir en aide.</p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link to="/register?role=no-code">
