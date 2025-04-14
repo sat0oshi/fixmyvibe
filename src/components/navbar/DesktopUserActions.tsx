@@ -1,4 +1,5 @@
-import NavButton from "../navbar/NavButton";
+
+import NavButton from "@/components/navbar/NavButton";
 import { User } from "@/types";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
