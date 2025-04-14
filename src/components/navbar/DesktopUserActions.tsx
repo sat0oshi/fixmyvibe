@@ -73,7 +73,7 @@ const DesktopUserActions = ({
           variant="ghost" 
           className={`rounded-full ${
             isScrolled 
-              ? 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800' 
+              ? 'text-fixmyvibe-600 dark:text-fixmyvibe-400 hover:bg-fixmyvibe-50 dark:hover:bg-gray-800' 
               : 'text-white hover:bg-white/10'
           }`} 
           size="icon"

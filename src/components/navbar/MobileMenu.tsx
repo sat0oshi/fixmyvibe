@@ -41,7 +41,7 @@ const MobileMenu = ({ user, profile, isAdmin, setIsMenuOpen, handleSignOut }: Mo
         {isAdmin && (
           <Link
             to="/admin-dashboard"
-            className="flex items-center gap-2 text-gray-700 dark:text-gray-200 hover:text-fixmyvibe-600 dark:hover:text-fixmyvibe-400 transition-colors py-2 border-b"
+            className="flex items-center gap-2 text-fixmyvibe-600 dark:text-fixmyvibe-400 hover:text-fixmyvibe-800 dark:hover:text-fixmyvibe-300 transition-colors py-2 border-b font-medium"
             onClick={() => setIsMenuOpen(false)}
           >
             <ShieldAlert className="h-5 w-5" />
@@ -61,7 +61,7 @@ const MobileMenu = ({ user, profile, isAdmin, setIsMenuOpen, handleSignOut }: Mo
         {user && profile?.role === "no-code" && (
           <Link
             to="/submit-project"
-            className="flex items-center gap-2 text-gray-700 dark:text-gray-200 hover:text-fixmyvibe-600 dark:hover:text-fixmyvibe-400 transition-colors py-2 border-b"
+            className="flex items-center gap-2 text-fixmyvibe-600 dark:text-fixmyvibe-400 hover:text-fixmyvibe-800 dark:hover:text-fixmyvibe-300 transition-colors py-2 border-b font-medium"
             onClick={() => setIsMenuOpen(false)}
           >
             <FilePlus className="h-5 w-5" />
@@ -72,7 +72,7 @@ const MobileMenu = ({ user, profile, isAdmin, setIsMenuOpen, handleSignOut }: Mo
         {user && profile?.role === "developer" && (
           <Link
             to="/helper-dashboard"
-            className="flex items-center gap-2 text-gray-700 dark:text-gray-200 hover:text-fixmyvibe-600 dark:hover:text-fixmyvibe-400 transition-colors py-2 border-b"
+            className="flex items-center gap-2 text-fixmyvibe-600 dark:text-fixmyvibe-400 hover:text-fixmyvibe-800 dark:hover:text-fixmyvibe-300 transition-colors py-2 border-b font-medium"
             onClick={() => setIsMenuOpen(false)}
           >
             <HelpingHand className="h-5 w-5" />
@@ -84,7 +84,7 @@ const MobileMenu = ({ user, profile, isAdmin, setIsMenuOpen, handleSignOut }: Mo
           <>
             <Link
               to="/profile"
-              className="flex items-center gap-2 text-gray-700 dark:text-gray-200 hover:text-fixmyvibe-600 dark:hover:text-fixmyvibe-400 transition-colors py-2 border-b"
+              className="flex items-center gap-2 text-fixmyvibe-600 dark:text-fixmyvibe-400 hover:text-fixmyvibe-800 dark:hover:text-fixmyvibe-300 transition-colors py-2 border-b font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
               <UserCircle className="h-5 w-5" />
@@ -92,7 +92,7 @@ const MobileMenu = ({ user, profile, isAdmin, setIsMenuOpen, handleSignOut }: Mo
             </Link>
             <Button 
               variant="outline" 
-              className="w-full text-fixmyvibe-600 dark:text-fixmyvibe-400 border-fixmyvibe-600 dark:border-fixmyvibe-400 hover:bg-fixmyvibe-50 dark:hover:bg-fixmyvibe-950/20"
+              className="w-full text-fixmyvibe-600 dark:text-fixmyvibe-400 border-fixmyvibe-600 dark:border-fixmyvibe-400 hover:bg-fixmyvibe-50 dark:hover:bg-fixmyvibe-950/20 font-medium"
               onClick={handleSignOut}
             >
               Déconnexion

@@ -13,9 +13,9 @@ const NavLink = ({ to, children, isScrolled, onClick, className = "" }: NavLinkP
   return (
     <Link
       to={to}
-      className={`transition-colors ${
+      className={`transition-colors font-medium ${
         isScrolled
-          ? 'text-gray-700 hover:text-fixmyvibe-600 dark:text-gray-200 dark:hover:text-fixmyvibe-400'
+          ? 'text-fixmyvibe-600 hover:text-fixmyvibe-800 dark:text-fixmyvibe-400 dark:hover:text-fixmyvibe-300'
           : 'text-white/90 hover:text-white'
       } ${className}`}
       onClick={onClick}
