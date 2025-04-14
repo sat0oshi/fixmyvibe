@@ -48,30 +48,13 @@ const ProjectDetail = () => {
         // Fetch project owner details with email
         const { data: ownerData, error: ownerError } = await supabase
           .from("profiles")
-          .select("username")
+          .select("username, email")
           .eq("id", data.user_id)
           .single();
 
         if (ownerError) throw ownerError;
         
-        // Get the email from auth.users table (if the user is authenticated)
-        let ownerEmail;
-        if (user) {
-          const { data: userData, error: userError } = await supabase
-            .from("users")
-            .select("email")
-            .eq("id", data.user_id)
-            .single();
-            
-          if (!userError && userData) {
-            ownerEmail = userData.email;
-          }
-        }
-        
-        setProjectOwner({
-          ...ownerData,
-          email: ownerEmail
-        });
+        setProjectOwner(ownerData);
 
         // Check if current user is the helper
         if (user && data.helper_id === user.id) {
