@@ -29,16 +29,33 @@ const Projects = () => {
   const { data: projects, isLoading, error } = useQuery({
     queryKey: ['projects'],
     queryFn: async () => {
-      const { data, error } = await supabase
+      // First, we get all projects
+      const { data: projectsData, error: projectsError } = await supabase
         .from('projects')
-        .select('*, profiles:user_id(username)')
+        .select('*')
         .order('created_at', { ascending: false });
       
-      if (error) {
-        throw error;
+      if (projectsError) {
+        throw projectsError;
       }
       
-      return data as (Project & { profiles: { username: string } })[];
+      // Then we get the usernames for each project in a separate query
+      const projectsWithUsernames = await Promise.all(
+        projectsData.map(async (project) => {
+          const { data: profileData, error: profileError } = await supabase
+            .from('profiles')
+            .select('username')
+            .eq('id', project.user_id)
+            .single();
+          
+          return {
+            ...project,
+            profiles: profileError ? { username: 'Utilisateur inconnu' } : profileData
+          };
+        })
+      );
+      
+      return projectsWithUsernames as (Project & { profiles: { username: string } })[];
     }
   });
 
