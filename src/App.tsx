@@ -14,6 +14,7 @@ import SubmitProject from "./pages/SubmitProject";
 import HelperDashboard from "./pages/HelperDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import Chat from "./pages/Chat";
+import Profile from "./pages/Profile";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminRoute from "./components/AdminRoute";
 
@@ -31,6 +32,14 @@ const App = () => (
             <Route path="/projects" element={<Projects />} />
             <Route path="/projects/:id" element={<ProjectDetail />} />
             <Route path="/auth" element={<Auth />} />
+            <Route 
+              path="/profile" 
+              element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              } 
+            />
             <Route 
               path="/submit-project" 
               element={
