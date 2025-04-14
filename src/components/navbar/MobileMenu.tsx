@@ -4,11 +4,11 @@ import NavButton from "./NavButton";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { UserCircle, FilePlus, HelpingHand, ShieldAlert } from "lucide-react";
-import { ProfileType } from "@/types";
+import { User } from "@/types";
 
 type MobileMenuProps = {
   user: any;
-  profile: ProfileType | null;
+  profile: User | null;
   isAdmin: boolean;
   setIsMenuOpen: (isOpen: boolean) => void;
   handleSignOut: () => void;

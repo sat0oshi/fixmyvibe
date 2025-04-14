@@ -1,9 +1,9 @@
 
 import NavLink from "./NavLink";
-import { ProfileType } from "@/types";
+import { User } from "@/types";
 
 type DesktopNavigationProps = {
-  profile: ProfileType | null;
+  profile: User | null;
   isAdmin: boolean;
   isScrolled: boolean;
 };

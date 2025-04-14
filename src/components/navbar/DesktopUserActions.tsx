@@ -1,13 +1,13 @@
 
 import NavButton from "./NavButton";
-import { ProfileType } from "@/types";
+import { User } from "@/types";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { UserCircle, FilePlus, HelpingHand, ShieldAlert } from "lucide-react";
 
 type DesktopUserActionsProps = {
   user: any;
-  profile: ProfileType | null;
+  profile: User | null;
   isAdmin: boolean;
   isScrolled: boolean;
   handleSignOut: () => void;
