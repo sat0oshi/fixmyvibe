@@ -1,8 +1,7 @@
-
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/Footer";
 import ProfileForm from "@/components/profile/ProfileForm";
 import LoadingProfile from "@/components/profile/LoadingProfile";
