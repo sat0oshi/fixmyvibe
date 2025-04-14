@@ -1,10 +1,12 @@
+
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/Footer";
 import { ArrowRight, HelpCircle, Code, Users, Check, Clock, FileCheck } from "lucide-react";
 import FAQ from "@/components/FAQ";
 import InfiniteGrid from "@/components/InfiniteGrid";
+
 const Index = () => {
   return <div className="min-h-screen flex flex-col bg-gray-950 text-white">
       {/* Background Grid Animation */}
@@ -219,4 +221,5 @@ const Index = () => {
       <Footer />
     </div>;
 };
+
 export default Index;

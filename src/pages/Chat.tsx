@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/Footer";
 import { useAuth } from "@/context/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
@@ -237,7 +237,7 @@ const Chat = () => {
 
   const isOwner = user.id === project.user_id;
   const userRole = isOwner ? "no-code" : "developer";
-
+  
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
