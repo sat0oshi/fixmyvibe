@@ -27,15 +27,15 @@ const NavButton = ({
       variant={variant}
       className={`${
         variant === "outline" && !isScrolled
-          ? "text-fixmyvibe-600 border-white hover:bg-white/20 hover:text-fixmyvibe-700"
+          ? "text-fixmyvibe-700 border-fixmyvibe-600 hover:bg-white/30 hover:text-fixmyvibe-800"
           : variant === "outline"
           ? "border-fixmyvibe-600 text-fixmyvibe-600 hover:bg-fixmyvibe-50 dark:border-fixmyvibe-400 dark:text-fixmyvibe-400 dark:hover:bg-fixmyvibe-950/20"
           : variant === "ghost" && !isScrolled
-          ? "text-fixmyvibe-600 hover:bg-white/20"
+          ? "text-fixmyvibe-700 hover:bg-white/30 hover:text-fixmyvibe-800"
           : variant === "ghost"
           ? "text-fixmyvibe-600 hover:bg-gray-100 dark:text-fixmyvibe-400 dark:hover:bg-gray-800"
           : isScrolled
-          ? "bg-fixmyvibe-600 hover:bg-fixmyvibe-700 text-white dark:bg-fixmyvibe-400 dark:hover:bg-fixmyvibe-500"
+          ? "bg-fixmyvibe-600 hover:bg-fixmyvibe-700 text-white dark:bg-fixmyvibe-500 dark:hover:bg-fixmyvibe-600 dark:text-white"
           : "bg-fixmyvibe-600 text-white hover:bg-fixmyvibe-700"
       } ${className}`}
       onClick={onClick}
