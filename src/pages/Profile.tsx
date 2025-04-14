@@ -35,7 +35,7 @@ const Profile = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
   const [avatarFile, setAvatarFile] = useState<File | null>(null);
-  const [availableSkills, setAvailableSkills] = useState([
+  const [availableSkills] = useState([
     "HTML", "CSS", "JavaScript", "TypeScript", "React", "Vue", "Angular", 
     "Node.js", "Python", "PHP", "Ruby", "Java", "C#", "Swift", "Kotlin",
     "SQL", "MongoDB", "Firebase", "AWS", "WordPress", "Shopify", "Webflow"
@@ -119,13 +119,11 @@ const Profile = () => {
     setIsLoading(true);
     
     try {
-      // Upload avatar if changed
       let avatarURL = avatarUrl;
       if (avatarFile) {
         avatarURL = await uploadAvatar(user.id);
       }
       
-      // Update profile
       const { error } = await supabase
         .from('profiles')
         .update({
