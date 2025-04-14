@@ -1,3 +1,4 @@
+
 import { useParams, Link, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -20,7 +21,7 @@ const ProjectDetail = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [project, setProject] = useState<Project | null>(null);
-  const [projectOwner, setProjectOwner] = useState<{ username: string; email?: string } | null>(null);
+  const [projectOwner, setProjectOwner] = useState<{ username: string; email?: string | null } | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaved, setIsSaved] = useState(false);
   const [connection, setConnection] = useState<{ id: string } | null>(null);
