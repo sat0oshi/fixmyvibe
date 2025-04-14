@@ -1,5 +1,5 @@
 
-import { FormField, FormItem, FormLabel } from "@/components/ui/form";
+import { FormField, FormItem, FormLabel, FormControl } from "@/components/ui/form";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Control } from "react-hook-form";
 import { ProfileFormValues } from "./types";
