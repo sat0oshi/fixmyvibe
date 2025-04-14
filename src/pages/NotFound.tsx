@@ -22,9 +22,9 @@ const NotFound = () => {
       <main className="flex-grow flex items-center justify-center pt-20 pb-20">
         <div className="text-center px-4">
           <h1 className="text-8xl font-bold text-fixmyvibe-600 mb-4">404</h1>
-          <p className="text-2xl text-gray-700 mb-6">Oups ! Cette page n'existe pas</p>
+          <p className="text-2xl text-gray-700 mb-6">Oups ! Cette page n'existe pas, mais attends !! </p>
           <p className="text-gray-600 mb-8 max-w-md mx-auto">
-            La page que vous recherchez a peut-être été déplacée, supprimée ou n'a jamais existé.
+            C'est un projet no-code donc si t'es là c'est que y'a un soucis, si tu veux aider envoie un mail à : coach@sat0oshi.com.
           </p>
           <Link to="/">
             <Button className="bg-fixmyvibe-600 hover:bg-fixmyvibe-700">
